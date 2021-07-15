@@ -1,7 +1,9 @@
 class UsersController < ApplicationController
 
+  before_action :require_user_login, only: [:show, :edit, :update, :destroy]
+  before_action :ensure_correct_user, only: [:show, :edit, :update, :destroy]
+
   def show
-    @user = User.find(params[:id])
   end
 
   def new
@@ -20,11 +22,9 @@ class UsersController < ApplicationController
   end
 
   def edit
-    @user = User.find(params[:id])
   end
 
   def update
-    @user = User.find(params[:id])
     if @user.update(user_params)
       flash[:success] = '更新しました。'
       redirect_to @user
@@ -35,7 +35,6 @@ class UsersController < ApplicationController
   end
 
   def destroy
-    @user = User.find(params[:id])
     @user.destroy
     flash[:success] = "削除しました"
     redirect_to root_url
@@ -45,6 +44,14 @@ class UsersController < ApplicationController
 
   def user_params
     params.require(:user).permit(:name, :email, :password, :password_confirmation)
+  end
+
+  def ensure_correct_user
+    @user = User.find(params[:id])
+    if @user.id != current_user.id
+      flash[:danger] = "権限がありません"
+      redirect_to root_url
+    end
   end
 
 end

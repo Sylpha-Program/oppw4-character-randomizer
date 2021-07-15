@@ -1,7 +1,11 @@
-<div class="center jumbotron">
-  <div class="text-center">
-    <h1>ONE PIECE</h1>
-    <h2 class="mt-5">海賊無双4</h2>
-    <h2 class="mt-5">キャラクターランダム</h2>
+<% if login? %>
+  <p>ログイン完了ユーザ: <%= current_user.name %></p>
+<% else %>
+  <div class="center jumbotron">
+    <div class="text-center">
+      <h1>ONE PIECE</h1>
+      <h2 class="mt-5">海賊無双4</h2>
+      <h2 class="mt-5">キャラクターランダム</h2>
+    </div>
   </div>
-</div>
+<% end %>
