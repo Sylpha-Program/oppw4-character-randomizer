@@ -93,6 +93,7 @@ GEM
     nio4r (2.5.7)
     nokogiri (1.11.7-x64-mingw32)
       racc (~> 1.4)
+    pg (1.2.3-x64-mingw32)
     puma (3.12.6)
     racc (1.5.2)
     rack (2.2.3)
@@ -176,6 +177,7 @@ DEPENDENCIES
   jbuilder (~> 2.5)
   kaminari
   mysql2 (>= 0.4.4, < 0.6.0)
+  pg (>= 0.18, < 2.0)
   puma (~> 3.11)
   rails (~> 5.2.6)
   sass-rails (~> 5.0)
