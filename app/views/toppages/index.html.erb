@@ -1,11 +1,31 @@
-<% if login? %>
-  <p>ログイン完了ユーザ: <%= current_user.name %></p>
-<% else %>
-  <div class="center jumbotron">
-    <div class="text-center">
-      <h1>ONE PIECE</h1>
-      <h2 class="mt-5">海賊無双4</h2>
-      <h2 class="mt-5">キャラクターランダム</h2>
+<div class="text-center mb-5">
+  <% if @character %>
+    <% if login? %>
+      <p><%= link_to @character.name, character_path(@character), class: 'font-weight-bold h4' %></p>
+    <% else %>
+      <p class="font-weight-bold h4"><%= @character.name %></p>
+    <% end %>
+    <p class="mt-5">
+      <img class="rounded mx-auto" src=<%= "/characters/#{@character.image}" %> alt="Main Weapon" width="160px" height="160px">
+    </p>
+  <% end %>
+  <p class="mt-5"><%= link_to 'キャラクターランダム生成', '/characters/random', method: :post, class: 'btn btn-lg btn-primary' %></p>
+  <% if login? %>
+    <div class="row mt-5">
+      <table class="offset-xl-4 col-xl-4 offset-md-3 col-md-6 table table-bordered">
+        <tr>
+          <td>レベル</td>
+          <td>0</td>
+        </tr>
+        <tr>
+          <td>現在のポイント</td>
+          <td>0</td>
+        </tr>
+        <tr>
+          <td>次のレベルまで</td>
+          <td>0</td>
+        </tr>
+      </table>
     </div>
-  </div>
-<% end %>
+  <% end %>
+</div>

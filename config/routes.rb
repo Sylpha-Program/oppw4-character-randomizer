@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   post 'login', to: 'sessions#create'
   delete 'logout', to: 'sessions#destroy'
 
+  post 'characters/random', to: 'characters#random'
   resources :characters, only: [:index, :show]
 
 end
