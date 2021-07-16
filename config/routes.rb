@@ -12,4 +12,6 @@ Rails.application.routes.draw do
   post 'characters/random', to: 'characters#random'
   resources :characters, only: [:index, :show]
 
+  resources :stages, only: [:index, :show]
+
 end

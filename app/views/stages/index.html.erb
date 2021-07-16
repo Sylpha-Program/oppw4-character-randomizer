@@ -1,0 +1,13 @@
+<div class="text-center mb-5">
+  <h1>ステージ一覧</h1>
+  <div class="row mt-5">
+    <% @stages.each do |stage| %>
+      <div class="col-xl-4 col-md-6 border pt-5 pb-3">
+        <p>
+          <img class="rounded" src=<%= "/stages/#{stage.image}" %> alt="Stage" width="320px" height="320px">
+        </p>
+        <p><%= link_to stage.name, stage_path(stage), class: 'font-weight-bold h5' %></p>
+      </div>
+    <% end %>
+  </div>
+</div>
