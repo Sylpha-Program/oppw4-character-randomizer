@@ -7,8 +7,8 @@
     <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
       <ul class="navbar-nav">
         <% if login? %>
-          <a href="#" class="nav-link">キャラクター</a>
-          <a href="#" class="nav-link">ステージ</a>
+          <li class="nav-item"><%= link_to 'キャラクター', characters_path, class: 'nav-link' %></li>
+          <li class="nav-item"><a href="#" class="nav-link">ステージ</a></li>
           <li class="nav-item"><%= link_to current_user.name, user_path(current_user), class: 'nav-link' %></li>
           <li class="nav-item"><%= link_to 'ログアウト', logout_path, method: :delete, class: 'nav-link' %></li>
         <% else %>
