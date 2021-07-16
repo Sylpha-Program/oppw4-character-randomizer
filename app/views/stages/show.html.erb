@@ -1,2 +1,14 @@
-<h1>Stages#show</h1>
-<p>Find me in app/views/stages/show.html.erb</p>
+<div class="text-center mb-5">
+  <h1 class="h4 font-weight-bold"><%= @stage.name %></h1>
+  <p class="mt-5">
+    <img class="rounded" src=<%= "/stages/#{@stage.image}" %> alt="Stage" width="320px" height="320px">
+  </p>
+  <div class="row mt-5">
+    <table class="offset-lg-3 col-lg-6 table table-bordered">
+      <tr>
+        <th>合計</th>
+        <th>0</th>
+      </tr>
+    </table>
+  </div>
+</div>

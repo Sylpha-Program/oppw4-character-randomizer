@@ -5,6 +5,7 @@ class StagesController < ApplicationController
   end
 
   def show
+    @stage = Stage.find(params[:id])
   end
 
 end
