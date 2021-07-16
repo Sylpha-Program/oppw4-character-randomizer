@@ -65,3 +65,9 @@ Stage.create(name: '鏡世界', image: 'mirror_world.jpg')
 Stage.create(name: '鬼ヶ島', image: 'onigashima.jpg')
 
 User.create(name: 'Sylpha', email: 'sylpha.games@gmail.com', password: 'sayumi729864')
+
+Character.order(id: :asc).each do |character|
+  Stage.order(id: :asc).each do |stage|
+    Score.create(user_id: 1, character_id: character.id, stage_id: stage.id)
+  end
+end

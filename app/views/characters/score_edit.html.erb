@@ -1,0 +1,21 @@
+<div class="text-center">
+  <p>
+    <img class="rounded" src=<%= "/characters/#{@character.image}" %> alt="Character" width="160px" height="160px">
+  </p>
+  <p><%= link_to @character.name, character_path(@character), class: 'font-weight-bold h4' %></p>
+</div>
+<div class="row my-5">
+  <div class="offset-xl-4 col-xl-4 offset-md-3 col-md-6">
+    <%= form_with(url: "/characters/#{@character.id}/score", local: true) do |f| %>
+      <div class="form-group">
+        <%= f.label :stage, 'ステージ' %>
+        <%= f.collection_select(:stage_id, @stages, :id, :name, {prompt: "選択してください"}, {class: 'form-control'}) %>
+      </div>
+      <div class="form-group">
+        <%= f.label :point, 'ポイント' %>
+        <%= f.number_field(:point, class: 'form-control') %>
+      </div>
+      <%= f.submit '登録する', class: 'btn btn-primary btn-block mt-5' %>
+    <% end %>
+  </div>
+</div>

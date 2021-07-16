@@ -6,24 +6,27 @@
       <p class="font-weight-bold h4"><%= @character.name %></p>
     <% end %>
     <p class="mt-5">
-      <img class="rounded mx-auto" src=<%= "/characters/#{@character.image}" %> alt="Main Weapon" width="160px" height="160px">
+      <img class="rounded mx-auto" src=<%= "/characters/#{@character.image}" %> alt="Character" width="160px" height="160px">
     </p>
   <% end %>
   <p class="mt-5"><%= link_to 'キャラクターランダム生成', '/characters/random', method: :post, class: 'btn btn-lg btn-primary' %></p>
   <% if login? %>
+    <% if @character %>
+      <p class="mt-5"><%= link_to '撃破数登録', "/characters/#{@character.id}/score", class: 'btn btn-lg btn-primary' %></p>
+    <% end %>
     <div class="row mt-5">
       <table class="offset-xl-4 col-xl-4 offset-md-3 col-md-6 table table-bordered">
         <tr>
           <td>レベル</td>
-          <td>0</td>
+          <td><%= @level %></td>
         </tr>
         <tr>
           <td>現在のポイント</td>
-          <td>0</td>
+          <td><%= @total_point %></td>
         </tr>
         <tr>
           <td>次のレベルまで</td>
-          <td>0</td>
+          <td><%= @next_level %></td>
         </tr>
       </table>
     </div>

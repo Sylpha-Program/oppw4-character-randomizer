@@ -4,6 +4,9 @@ class UsersController < ApplicationController
   before_action :ensure_correct_user, only: [:show, :edit, :update, :destroy]
 
   def show
+    @total_point = Score.where(user_id: session[:user_id]).sum(:point)
+    @level = Math.sqrt(@total_point).floor
+    @next_level = (@level + 1) ** 2 - @total_point
   end
 
   def new

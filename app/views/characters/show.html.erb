@@ -1,14 +1,21 @@
 <div class="text-center mb-5">
   <h1 class="h4 font-weight-bold"><%= @character.name %></h1>
   <p class="mt-5">
-    <img class="rounded" src=<%= "/characters/#{@character.image}" %> alt="Main Weapon" width="160px" height="160px">
+    <img class="rounded" src=<%= "/characters/#{@character.image}" %> alt="Character" width="160px" height="160px">
   </p>
+  <p class="mt-5"><%= link_to '撃破数登録', "/characters/#{@character.id}/score", class: 'btn btn-lg btn-primary' %></p>
   <div class="row mt-5">
     <table class="offset-lg-3 col-lg-6 table table-bordered">
       <tr>
         <th>合計</td>
-        <th>0</td>
+        <th><%= @total_point %></td>
       </tr>
+      <% @scores.each do |score| %>
+        <tr>
+          <td><%= score.stage.name %></td>
+          <td><%= score.point %></td>
+        </tr>
+      <% end %>
     </table>
   </div>
 </div>

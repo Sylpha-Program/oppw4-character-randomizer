@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_16_071650) do
+ActiveRecord::Schema.define(version: 2021_07_16_080059) do
 
   create_table "characters", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name"
@@ -19,6 +19,18 @@ ActiveRecord::Schema.define(version: 2021_07_16_071650) do
     t.integer "action_type"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "scores", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "character_id"
+    t.bigint "stage_id"
+    t.integer "point", default: 0
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["character_id"], name: "index_scores_on_character_id"
+    t.index ["stage_id"], name: "index_scores_on_stage_id"
+    t.index ["user_id"], name: "index_scores_on_user_id"
   end
 
   create_table "stages", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -36,4 +48,7 @@ ActiveRecord::Schema.define(version: 2021_07_16_071650) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "scores", "characters"
+  add_foreign_key "scores", "stages"
+  add_foreign_key "scores", "users"
 end

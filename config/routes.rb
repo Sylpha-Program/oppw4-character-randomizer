@@ -10,6 +10,8 @@ Rails.application.routes.draw do
   delete 'logout', to: 'sessions#destroy'
 
   post 'characters/random', to: 'characters#random'
+  get 'characters/:id/score', to: 'characters#score_edit'
+  post 'characters/:id/score', to: 'characters#score_update'
   resources :characters, only: [:index, :show]
 
   resources :stages, only: [:index, :show]
