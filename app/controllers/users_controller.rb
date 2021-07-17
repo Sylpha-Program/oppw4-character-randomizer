@@ -16,6 +16,14 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
+      @characters = Character.order(id: :asc)
+      @stages = Stage.order(id: :asc)
+      @characters.each do |character|
+        @stages.each do |stage|
+          Score.create(user_id: @user.id, character_id: character.id, stage_id: stage.id)
+        end
+      end
+      session[:user_id] = @user.id
       flash[:success] = '登録しました。'
       redirect_to root_url
     else
