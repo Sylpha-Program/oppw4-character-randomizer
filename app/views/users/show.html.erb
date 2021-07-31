@@ -22,6 +22,10 @@
         <td>次のレベルまで</td>
         <td><%= @next_level %></td>
       </tr>
+      <tr>
+        <td>達成率</td>
+        <td><%= @achievement_rate %></td>
+      </tr>
     </table>
   </div>
   <p class="mt-5"><%= link_to '登録情報編集', edit_user_path(@user), class: 'btn btn-lg btn-primary' %></p>
