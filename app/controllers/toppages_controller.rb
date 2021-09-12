@@ -11,6 +11,7 @@ class ToppagesController < ApplicationController
       @achievement_scores = Score.where(user_id: session[:user_id]).where.not(point: 0).count
       @all_scores = Score.where(user_id: session[:user_id]).count
       @achievement_rate = ((Score.where(user_id: session[:user_id]).where.not(point: 0).count.to_f / Score.where(user_id: session[:user_id]).count.to_f) * 100).round(2)
+      @average_point = (@total_point / @achievement_scores).floor
     end
   end
 
