@@ -1,18 +1,20 @@
 <div class="text-center mb-5">
-  <h1 class="h4 font-weight-bold"><%= @stage.name %></h1>
-  <p class="mt-5">
+  <p>
     <img class="rounded" src=<%= "/stages/#{@stage.image}" %> alt="Stage" width="320px" height="320px">
   </p>
+  <h1 class="h4 font-weight-bold"><%= @stage.name %></h1>
   <div class="row mt-5">
     <table class="offset-lg-3 col-lg-6 table table-bordered">
       <tr>
-        <th>平均</th>
-        <th><%= @average_point %></th>
+        <th>キャラクター</th>
+        <th>合計</th>
+        <th>最高</th>
       </tr>
       <% @scores.each do |score| %>
         <tr>
-          <td><%= score.character.name %></td>
-          <td><%= score.point %></td>
+          <th><%= score.character.name %></th>
+          <td><%= score.total_point %></td>
+          <td><%= score.max_point %></td>
         </tr>
       <% end %>
     </table>

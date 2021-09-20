@@ -7,12 +7,8 @@ class CharactersController < ApplicationController
   def show
     @character = Character.find(params[:id])
     @scores = Score.where(user_id: session[:user_id], character_id: params[:id]).order(stage_id: :asc)
-    @total_point = @scores.sum(:point)
-    @achievement_scores = Score.where(user_id: session[:user_id], character_id: params[:id]).where.not(point: 0).count
-    if @achievement_scores == 0
-      @average_point = 0
-    else
-      @average_point = (@total_point / @achievement_scores).floor
+    if session[:user_id]
+      @level = Math.sqrt((Score.where(user_id: session[:user_id], character_id: params[:id]).sum(:total_point)) / 400).floor
     end
   end
 
@@ -26,16 +22,20 @@ class CharactersController < ApplicationController
   def score_edit
     @character = Character.find(params[:id])
     @stages = Stage.order(id: :asc)
+    @level = Math.sqrt((Score.where(user_id: session[:user_id], character_id: params[:id]).sum(:total_point)) / 400).floor
   end
 
   def score_update
     @score = Score.find_by(user_id: session[:user_id], character_id: params[:id], stage: params[:stage_id])
-    if params[:point].to_i > @score.point
-      @difference = params[:point].to_i - @score.point
-      @score.update(point: params[:point])
-      flash[:success] = "撃破数が#{@difference}アップしました。"
-    else
-      flash[:success] = "撃破数は更新されませんでした。"
+    @previous_level = Math.sqrt((Score.where(user_id: session[:user_id], character_id: params[:id]).sum(:total_point)) / 400).floor
+    @score.total_point += params[:point].to_i
+    @score.save
+    @current_level = Math.sqrt((Score.where(user_id: session[:user_id], character_id: params[:id]).sum(:total_point)) / 400).floor
+    if @current_level > @previous_level
+      flash[:success] = "#{@score.character.name}のレベルが#{@current_level}に上がりました"
+    end
+    if params[:point].to_i > @score.max_point
+      @score.update(max_point: params[:point])
     end
     redirect_to root_url
   end

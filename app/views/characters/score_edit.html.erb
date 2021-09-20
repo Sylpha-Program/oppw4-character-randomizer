@@ -3,6 +3,7 @@
     <img class="rounded" src=<%= "/characters/#{@character.image}" %> alt="Character" width="160px" height="160px">
   </p>
   <p><%= link_to @character.name, character_path(@character), class: 'font-weight-bold h4' %></p>
+  <p class="font-weight-bold h4 mb-3">Lv.<%= @level %></p>
 </div>
 <div class="row my-5">
   <div class="offset-xl-4 col-xl-4 offset-md-3 col-md-6">
