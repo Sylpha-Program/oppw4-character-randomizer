@@ -36,7 +36,7 @@ class CharactersController < ApplicationController
       msg = msg.gsub(",","<br>")
       flash[:success] = msg
     else
-      msg = "ブキ：#{@score.character.name},ステージ：#{@score.stage.name},撃破数：#{params[:point].to_i}（過去最高：#{@score.max_point}）"
+      msg = "キャラクター：#{@score.character.name},ステージ：#{@score.stage.name},撃破数：#{params[:point].to_i}（過去最高：#{@score.max_point}）"
       msg = msg.gsub(",","<br>")
       flash[:success] = msg
     end
