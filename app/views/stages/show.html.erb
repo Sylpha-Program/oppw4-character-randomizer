@@ -7,14 +7,14 @@
     <table class="offset-lg-3 col-lg-6 table table-bordered">
       <tr>
         <th>キャラクター</th>
-        <th>合計</th>
         <th>最高</th>
+        <th>合計</th>
       </tr>
       <% @scores.each do |score| %>
         <tr>
           <th><%= score.character.name %></th>
-          <td><%= score.total_point %></td>
           <td><%= score.max_point %></td>
+          <td><%= score.total_point %></td>
         </tr>
       <% end %>
     </table>

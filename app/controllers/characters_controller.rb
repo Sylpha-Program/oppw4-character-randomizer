@@ -32,7 +32,13 @@ class CharactersController < ApplicationController
     @score.save
     @current_level = Math.sqrt((Score.where(user_id: session[:user_id], character_id: params[:id]).sum(:total_point)) / 400).floor
     if @current_level > @previous_level
-      flash[:success] = "#{@score.character.name}のレベルが#{@current_level}に上がりました"
+      msg = "キャラクター：#{@score.character.name},ステージ：#{@score.stage.name},撃破数：#{params[:point].to_i}（過去最高：#{@score.max_point}）,レベル：Lv.#{@previous_level}→Lv.#{@current_level}"
+      msg = msg.gsub(",","<br>")
+      flash[:success] = msg
+    else
+      msg = "ブキ：#{@score.character.name},ステージ：#{@score.stage.name},撃破数：#{params[:point].to_i}（過去最高：#{@score.max_point}）"
+      msg = msg.gsub(",","<br>")
+      flash[:success] = msg
     end
     if params[:point].to_i > @score.max_point
       @score.update(max_point: params[:point])
